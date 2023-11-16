@@ -1,4 +1,3 @@
-# DSA-MINI-Project_2023
 # Hotel Management System 
 
 # CONTRIBUTORS:
