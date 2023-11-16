@@ -37,16 +37,42 @@ This C program serves as a comprehensive Hotel Management System, designed to ef
 6. **Display Functionality:**
     - Users can display the list of all customers and available rooms, providing an overview of the current hotel status.
 
-### Data Structures
+### Data Structures Overview
 
-- **Customer Structure:**
-    - Contains information about each customer, including name, mobile number, stay duration, room details, total charges, and a linked list of ordered food items.
+#### Customer Structure:
 
-- **Room Structure:**
-    - Represents the different types of rooms available, storing information such as room number and charge per day.
+The `Customer` structure is designed as a dynamic linked list, offering a flexible way to manage customer information. Each node in the list encapsulates the following details:
 
-- **Food Structure:**
-    - Holds details about food items ordered by customers, including the type of food and associated charges.
+- `name`: A character array holding the customer's name.
+- `mobile_number`: A long long integer representing the customer's contact number.
+- `stay_duration`: An integer denoting the duration of the customer's stay.
+- `room_number`: An integer indicating the assigned room number.
+- `room_charge`: An integer storing the charge associated with the room.
+- `total`: An integer representing the cumulative charges for the customer.
+- `foodList`: A linked list of the `Food` structure, cataloging food items ordered by the customer.
+- `next`: A pointer to the next `Customer` node in the linked list.
+
+#### Room Structure:
+
+The `Room` structure models the different room types available and is implemented as a linked list. Each node in this list contains:
+
+- `room_no`: An integer specifying the room number.
+- `charge`: An integer representing the daily charge for the room.
+- `next`: A pointer to the next `Room` node in the linked list.
+
+#### Food Structure:
+
+The `Food` structure signifies food items ordered by customers and is organized as a linked list. Each node holds:
+
+- `food_charge`: An integer indicating the charge for the food item.
+- `Food_Name`: A character array specifying the type of food.
+- `foodnext`: A pointer to the next `Food` node in the linked list.
+
+### Implementation Details
+
+The implementation utilizes dynamic memory allocation and linked lists, providing scalability for managing customer records, room details, and food orders. The use of linked lists facilitates efficient insertion and retrieval operations, accommodating dynamic changes in customer count, room availability, and food choices.
+
+The code includes functions for various operations, such as customer insertion, room allocation, room service, party hall booking, and billing. This ensures a comprehensive and user-friendly system for managing hotel-related activities. The chosen data structures and their organization enhance readability, maintainability, and adaptability for future expansions or modifications.
 
 ### Program Execution Flow
 
