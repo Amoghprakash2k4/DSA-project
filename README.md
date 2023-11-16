@@ -6,8 +6,6 @@
 2) **PES2UG22CS062 - Amogh P**
 3) **PES2UG22CS107 - Ashhad Asif Sayyed**
 
-# Hotel Management System Readme
-
 ## Overview
 This C program serves as a comprehensive Hotel Management System, designed to efficiently manage customer information, room allocation, room services, and billing. The program employs a menu-driven interface, offering users an array of options to interact with the system seamlessly.
 
