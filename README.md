@@ -1,5 +1,11 @@
-# DSA-MINI-Project
-# Hotel Management System Readme
+# DSA-MINI-Project_2023
+# Hotel Management System 
+
+# CONTRIBUTORS:
+
+1) **PES2UG22CS093 - Areeb Ahmed**
+2) **PES2UG22CS062 - Amogh P**
+3) **PES2UG22CS107 - Ashhad Asif Sayyed**
 
 ## Overview
 This C program simulates a basic Hotel Management System. It provides users with the ability to manage customer information, allocate rooms, request room services, and generate bills. The program features a menu-driven interface with various options to interact with the system.
@@ -84,4 +90,3 @@ This C program simulates a basic Hotel Management System. It provides users with
 - The program aims to provide a simple hotel management experience, allowing users to perform basic operations.
 - Users can interact with the system to manage customer stays, allocate rooms, and request additional services.
 
-Feel free to explore and modify the code according to educational or personal requirements. Keep in mind that this program is a basic simulation and may require additional enhancements for practical use in real-world scenarios.
