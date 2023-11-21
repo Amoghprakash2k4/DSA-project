@@ -48,6 +48,22 @@ Room* init_room(int* Rooms, int charge){
 	return head;
 }
 
+void insertRoom(Room** head, int room,int charge){
+	Room* new=(Room*)malloc(sizeof(Room));
+	new->room_no=room;
+	new->charge=charge;
+	new->next=NULL;
+	if(head==NULL){
+		*head=new;
+		return;
+	}
+	Room* temp=*head;
+	while(temp->next)
+		temp=temp->next;
+	temp->next=new;
+	return;
+}
+
 Customer* createCustomer(){
 	char name[50];
 	Customer* new=(Customer*)malloc(sizeof(Customer));
@@ -97,15 +113,7 @@ void displayCustomers(Customer* head){
 		printf("%s\t%lld\t%d\t%d\t%d\t%d\n",head->name,head->mobile_number,head->stay_duration,head->room_number,head->room_charge,head->total);
 		head=head->next;
 	}
-	return;
-}
-
-void displayRooms(Room* head){
-	printf("RoomNo\n");
-	while(head!=NULL){
-		printf("%d %d\n",head->room_no,head->charge);
-		head=head->next;
-	}
+	char ch=getch();
 	return;
 }
 
@@ -233,7 +241,7 @@ Customer* updateRoomService(Customer* head, Customer* new){
 
 void Billing(Customer* new){
 	system("cls");
-    printf("                          \t\t\tHOTEL MAKSOOD\n");
+    printf("                          \t\t\tHOTEL SOMETHING\n");
     printf("---------------------------------------------------------------------------------------------------------------------------------\n");
     printf("Name: %s\n", new->name);
     printf("Mobile: %lld\n", new->mobile_number);
@@ -251,13 +259,16 @@ void Billing(Customer* new){
     }
 
     printf("---------------------------------------------------------------------------------------------------------------------------------\n");
-    printf("%-73s%-18d\n", "Total:", new->total);
+    printf("%-73s$%-18d.00\n", "Total:", new->total);
     printf("---------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Press Enter to continue...");
 	char ch=getch();
 	return;
 }
 
 int main(){
+	int STD_ROOM,DLX_ROOM,FML_ROOM,SUI_ROOM;
+	STD_ROOM=DLX_ROOM=FML_ROOM=SUI_ROOM=4;
 	Customer* Customers=NULL;
 	Customer* key=(Customer*)malloc(sizeof(Customer));
 	Customer* new=(Customer*)malloc(sizeof(Customer));
@@ -275,7 +286,8 @@ int main(){
 	SuiteRoom=init_room(sui_room, 250);
 	int choice,roomchoice;
 	do{
-		printf("MENU\n\n1. New Customer\n2. Old Customer?Search.\n3. Allot Room\n4. Room Service\n5. Party Hall\n6. CheckOut And Billing\n\nEnter your choice: ");
+		system("cls");
+		printf("MENU\n\n1. New Customer\n2. Old Customer?Search.\n3. Allot Room\n4. Room Service\n5. Party Hall\n6. CheckOut And Billing\n7. See all Customer records\n0. Exit\n\nEnter your choice: ");
 		scanf("%d",&choice);
 		switch(choice){
 			case 1:
@@ -293,25 +305,30 @@ int main(){
 					printf("No Customers Found.\n");
 				else
 					printf("%s %lld",new->name,new->mobile_number);
+					char ch=getch();
 				break;
 
 			case 3:
 				while(1){
 					printf("Room Types: \n");
-					printf("1)Standard Room \n2)Deluxe Room\n3)Family Room\n4)Suite Room\n\nEnter your choice: ");
+					printf("1)Standard Room %d\n2)Deluxe Room %d\n3)Family Room %d\n4)Suite Room %d\n\nEnter your choice: ",STD_ROOM, DLX_ROOM, FML_ROOM, SUI_ROOM);
 					scanf("%d",&roomchoice);
 					switch(roomchoice){
 						case 1:
 							new=allotRoom(new,&StandardRoom);
+							STD_ROOM--;
 							break;
 						case 2:
 							new=allotRoom(new,&DeluxeRoom);
+							DLX_ROOM--;
 							break;
 						case 3:
 							new=allotRoom(new,&FamilyRoom);
+							FML_ROOM--;
 							break;
 						case 4:
 							new=allotRoom(new,&SuiteRoom);
+							SUI_ROOM--;
 							break;
 					}
 					if(new->room_number)
@@ -337,19 +354,41 @@ int main(){
 
 			case 6:
 				printf("Enter the mobile number of customer: ");
-				// scanf("%lld",&key->mobile_number);
-				// new=findCustomer(Customers, key);
-				Billing(new);				
+				scanf("%lld",&key->mobile_number);
+				new=findCustomer(Customers, key);
+				if(new!=NULL){
+				Billing(new);
+				switch (new->room_number%100)
+				{
+				case 1:
+					insertRoom(&StandardRoom,new->room_number,new->room_charge);
+					STD_ROOM++;
+					break;
+				
+				case 2:
+					insertRoom(&DeluxeRoom,new->room_number,new->room_charge);
+					DLX_ROOM++;
+					break;
+				
+				case 3:
+					insertRoom(&FamilyRoom,new->room_number,new->room_charge);
+					FML_ROOM++;
+					break;
+
+				case 4:
+					insertRoom(&SuiteRoom,new->room_number,new->room_charge);
+					SUI_ROOM++;
+					break;
+				}			
 				break;
+				}
+				else{
+					printf("Not found. Try Again.\n");
+				}
 
 			case 7: 
 				printf("Displaying\n");
 				displayCustomers(Customers);
-				printf("Rooms Now\n");
-				displayRooms(StandardRoom);
-				displayRooms(DeluxeRoom);
-				displayRooms(FamilyRoom);
-				displayRooms(SuiteRoom);
 				break;
 		}
 	}while(choice);
