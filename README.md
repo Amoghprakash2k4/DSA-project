@@ -51,7 +51,7 @@ The `Customer` structure is designed as a dynamic linked list, offering a flexib
 
 #### Room Structure:
 
-The `Room` structure models the different room types available and is implemented as a linked list. Each node in this list contains:
+The `Room` structure models the different room types available and is implemented as a queue. Each node in this list contains:
 
 - `room_no`: An integer specifying the room number.
 - `charge`: An integer representing the daily charge for the room.
