@@ -188,7 +188,7 @@ Customer* RoomService(Customer* new){
 Customer* insertPartyHall(Customer* new){
 	int choice;
 	Food* Cancel=(Food*)malloc(sizeof(Food));
-	Cancel->food_charge=10;
+	Cancel->food_charge=-40;
 	strcpy(Cancel->Food_Name,"CanclHall");
 	Cancel->foodnext=NULL;
 	Food* partyHall=(Food*)malloc(sizeof(Food));
